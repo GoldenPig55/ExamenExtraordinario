@@ -1,4 +1,7 @@
-﻿namespace ExamenExtraordinario
+﻿using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace ExamenExtraordinario
 {
     internal class Program
     {
@@ -24,8 +27,15 @@
         public bool SelfCastable { get; set; }
         public AbilityTypeDoH AbilityTypeDoH { get; set; }
         public int Potency { get; set; }
-        public ActiveAbility()
+        public ActiveAbility(string name, int requiredLvl, PlayerClass playerClass, int manaCost, bool selfCastable, AbilityTypeDoH abilityTypeDoH, int potency)
         {
+            Name = name;
+            RequiredLvl = requiredLvl;
+            PlayerClass = playerClass;
+            ManaCost = manaCost;
+            SelfCastable = selfCastable;
+            AbilityTypeDoH = abilityTypeDoH;
+            Potency = potency;
             AbilityTypePoA = AbilityTypePoA.Active;
             Id = lastId + 1;
             lastId++;
@@ -168,6 +178,10 @@
                     FindAbility();
                     break;
             }
+        }
+        public void AddAbility()
+        {
+            Console.WriteLine("");
         }
     }
     public interface IAbility
