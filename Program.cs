@@ -7,6 +7,14 @@
 
         }
     }
+    public interface IAbility
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int RequiredLvl { get; set; }
+        public AbilityType AbilityType { get; set; }
+        public PlayerClass PlayerClass {  get; set; }
+    }
     public enum AbilityType
     {
         Pasiva = 0,
