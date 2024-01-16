@@ -37,6 +37,10 @@
             Id = lastId + 1;
             lastId++;
         }
+        public override string ToString()
+        {
+            return $"{Name}\nNivel requerido: {RequiredLvl}\nTipo: {AbilityTypePoA}\nClase asociada: {PlayerClass}\nCosto mana: {ManaCost}\nAutoaplicable: {SelfCastable}\nTipoEfecto: {AbilityTypeDoH}\nPotencia: {Potency}";
+        }
         public void Throw()
         {
 
@@ -59,10 +63,22 @@
         public bool SelfCastable { get; set; }
         public AbilityTypeDoH AbilityTypeDoH { get; set; }
         public int Potency { get; set; }
-        public PassiveAbility()
+        public PassiveAbility(string name, int requiredLvl, PlayerClass playerClass, int manaCost, bool selfCastable, AbilityTypeDoH abilityTypeDoH, int potency)
         {
+            Name = name;
+            RequiredLvl = requiredLvl;
+            PlayerClass = playerClass;
+            ManaCost = manaCost;
+            SelfCastable = selfCastable;
+            AbilityTypeDoH = abilityTypeDoH;
+            Potency = potency;
+            AbilityTypePoA = AbilityTypePoA.Active;
             Id = lastId + 1;
             lastId++;
+        }
+        public override string ToString()
+        {
+            return $"{Name}\nNivel requerido: {RequiredLvl}\nTipo: {AbilityTypePoA}\nClase asociada: {PlayerClass}\nCosto mana: {ManaCost}\nAutoaplicable: {SelfCastable}\nTipoEfecto: {AbilityTypeDoH}\nPotencia: {Potency}";
         }
         public void Throw()
         {
@@ -204,12 +220,28 @@
                     SeleccionSelfCastable = Convert.ToBoolean(Console.ReadLine());
                     Console.WriteLine("Cuanto es su potencia?");
                     SeleccionPotency = Convert.ToInt32(Console.ReadLine());
-                    RegisterActiveAbility(SeleccionNombre, SeleccionRequiredLvl, SeleccionPlayerClass, SeleccionManaCost, SeleccionSelfCastable, SeleccionDoH, SeleccionPotency);
+                    RegisterPassiveAbility(SeleccionNombre, SeleccionRequiredLvl, SeleccionPlayerClass, SeleccionManaCost, SeleccionSelfCastable, SeleccionDoH, SeleccionPotency);
                     Console.WriteLine("\nRegistro Completo.\n");
                     Console.WriteLine($"{SeleccionNombre}\nNivel requerido: {SeleccionRequiredLvl}\nTipo: Pasiva\nClase asociada: {SeleccionPlayerClass}\nCosto mana: {SeleccionManaCost}\nAutoaplicable: {SeleccionSelfCastable}\nTipoEfecto: {SeleccionDoH}\nPotencia: {SeleccionPotency}");
                     break;
                 case "2":
-
+                    Console.WriteLine("Registrando habilidad activa. Cual es el nombre?");
+                    SeleccionNombre = Console.ReadLine();
+                    Console.WriteLine("Que nivel necesitas ser para utilizar esta habilidad?");
+                    SeleccionRequiredLvl = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Que clase puede utilizar esta habilidad? [ 1) Warrior  2) Rogue  3) Wizard ]");
+                    SeleccionPlayerClass = (PlayerClass)Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Cuanto de mana cuesta?");
+                    SeleccionManaCost = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Que tipo de habilidad es? [ 1) Daño  2) Curativa ]");
+                    SeleccionDoH = (AbilityTypeDoH)Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Es auto aplicable? (ingrese true o false)");
+                    SeleccionSelfCastable = Convert.ToBoolean(Console.ReadLine());
+                    Console.WriteLine("Cuanto es su potencia?");
+                    SeleccionPotency = Convert.ToInt32(Console.ReadLine());
+                    RegisterActiveAbility(SeleccionNombre, SeleccionRequiredLvl, SeleccionPlayerClass, SeleccionManaCost, SeleccionSelfCastable, SeleccionDoH, SeleccionPotency);
+                    Console.WriteLine("\nRegistro Completo.\n");
+                    Console.WriteLine($"{SeleccionNombre}\nNivel requerido: {SeleccionRequiredLvl}\nTipo: Activa\nClase asociada: {SeleccionPlayerClass}\nCosto mana: {SeleccionManaCost}\nAutoaplicable: {SeleccionSelfCastable}\nTipoEfecto: {SeleccionDoH}\nPotencia: {SeleccionPotency}");
                     break;
                 default:
                     Console.WriteLine("Seleccion invalida.");
@@ -223,6 +255,12 @@
             ActiveAbility newActiveAbility = new ActiveAbility(name, requiredLvl, playerClass, manaCost, selfCastable, abilityTypeDoH, potency);
             _activeAbilityList.Add(newActiveAbility);
             return newActiveAbility;
+        }
+        public PassiveAbility RegisterPassiveAbility(string name, int requiredLvl, PlayerClass playerClass, int manaCost, bool selfCastable, AbilityTypeDoH abilityTypeDoH, int potency)
+        {
+            PassiveAbility newPassiveAbility = new PassiveAbility(name, requiredLvl, playerClass, manaCost, selfCastable, abilityTypeDoH, potency);
+            _passiveAbilityList.Add(newPassiveAbility);
+            return newPassiveAbility;
         }
     }
     public interface IAbility
