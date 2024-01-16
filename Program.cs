@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+        public static AbilityRepository AbilityRepository = new AbilityRepository();
         static void Main(string[] args)
         {
 
@@ -112,7 +113,7 @@
                 case "1":
                     Console.WriteLine("Ingrese el ID de su habilidad pasiva.");
                     SeleccionID = Convert.ToInt32(Console.ReadLine());
-                    // var pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
+                    var pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
                     if (pasivabuscada != null)
                     {
                         Console.WriteLine(pasivabuscada);
@@ -127,7 +128,7 @@
                             case 'y':
                                 Console.WriteLine("Ingrese el nombre de su habilidad pasiva.");
                                 SeleccionNombre = Console.ReadLine();
-                                // pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
+                                pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
                                 if (pasivabuscada != null)
                                 {
                                     Console.WriteLine(pasivabuscada);
@@ -150,7 +151,7 @@
                 case "2":
                     Console.WriteLine("Ingrese el ID de su habilidad activa.");
                     SeleccionID = Convert.ToInt32(Console.ReadLine());
-                    // var activabuscada = Program.AbilityRepository._activeAbilityList.Find(x => x.Id == SeleccionID);
+                    var activabuscada = Program.AbilityRepository._activeAbilityList.Find(x => x.Id == SeleccionID);
                     if (activabuscada != null)
                     {
                         Console.WriteLine(activabuscada);
@@ -165,14 +166,14 @@
                             case 'y':
                                 Console.WriteLine("Ingrese el nombre de su habilidad activa.");
                                 SeleccionNombre = Console.ReadLine();
-                                // activabuscada = Program.registro._activeAbilityList.Find(x => x.Nombre == SeleccionNombre);
+                                activabuscada = Program.registro._activeAbilityList.Find(x => x.Nombre == SeleccionNombre);
                                 if (activabuscada != null)
                                 {
                                     Console.WriteLine(activabuscada);
                                 }
                                 else
                                 {
-                                    Console.WriteLine("No se encontro ninguna mascota con ese nombre.");
+                                    Console.WriteLine("No se encontro ninguna habilidad activa con ese nombre.");
                                 }
                                 break;
                             case 'N':
