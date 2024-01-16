@@ -68,6 +68,13 @@
     }
     public class AbilityRepository
     {
+        public List<ActiveAbility> _activeAbilityList;
+        public List<PassiveAbility> _passiveAbilityList;
+        public AbilityRepository()
+        {
+            _activeAbilityList = new List<ActiveAbility>();
+            _passiveAbilityList = new List<PassiveAbility>();
+        }
         public void FindAbility()
         {
             string SeleccionNombre, SeleccionPoA;
