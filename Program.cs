@@ -38,7 +38,7 @@ namespace ExamenExtraordinario
 
         }
     }
-    public class PassiveAbility : IAbility, IRangedAbility
+    public class PassiveAbility : IAbility, IRangedAbility, IStatusAbility
     {
         private int lastId = 0;
         private int id;
@@ -61,6 +61,10 @@ namespace ExamenExtraordinario
             lastId++;
         }
         public void Throw()
+        {
+
+        }
+        public void ApplyEffect()
         {
 
         }
@@ -88,7 +92,7 @@ namespace ExamenExtraordinario
         public int Potency { get; set; }
         public void Throw();
     }
-    public interface IEffectAbility
+    public interface IStatusAbility
     {
         public void ApplyEffect();
     }
