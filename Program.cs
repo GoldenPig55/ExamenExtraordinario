@@ -23,6 +23,10 @@
         public int Potency { get; set; }
         public void Throw();
     }
+    public interface IEffectAbility
+    {
+        public void ApplyEffect();
+    }
     public enum AbilityTypePoA // Ability Type Passive or Active
     {
         Passive = 0,
