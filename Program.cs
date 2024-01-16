@@ -1,7 +1,4 @@
-﻿using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace ExamenExtraordinario
+﻿namespace ExamenExtraordinario
 {
     internal class Program
     {
@@ -99,7 +96,7 @@ namespace ExamenExtraordinario
                 case "1":
                     Console.WriteLine("Ingrese el ID de su habilidad pasiva.");
                     SeleccionID = Convert.ToInt32(Console.ReadLine());
-                   // var pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
+                    // var pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
                     if (pasivabuscada != null)
                     {
                         Console.WriteLine(pasivabuscada);
@@ -114,7 +111,7 @@ namespace ExamenExtraordinario
                             case 'y':
                                 Console.WriteLine("Ingrese el nombre de su habilidad pasiva.");
                                 SeleccionNombre = Console.ReadLine();
-                               // pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
+                                // pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
                                 if (pasivabuscada != null)
                                 {
                                     Console.WriteLine(pasivabuscada);
@@ -152,7 +149,7 @@ namespace ExamenExtraordinario
                             case 'y':
                                 Console.WriteLine("Ingrese el nombre de su habilidad activa.");
                                 SeleccionNombre = Console.ReadLine();
-                               // activabuscada = Program.registro._activeAbilityList.Find(x => x.Nombre == SeleccionNombre);
+                                // activabuscada = Program.registro._activeAbilityList.Find(x => x.Nombre == SeleccionNombre);
                                 if (activabuscada != null)
                                 {
                                     Console.WriteLine(activabuscada);
@@ -181,7 +178,51 @@ namespace ExamenExtraordinario
         }
         public void AddAbility()
         {
-            Console.WriteLine("");
+            Console.WriteLine("Que tipo de habilidad desea registrar? [ 1) Pasiva  2)  Activa ]\n");
+            string SeleccionPoA = Console.ReadLine();
+
+            string SeleccionNombre;
+            int SeleccionRequiredLvl, SeleccionManaCost, SeleccionPotency;
+            bool SeleccionSelfCastable;
+            AbilityTypeDoH SeleccionDoH;
+            PlayerClass SeleccionPlayerClass;
+
+            switch (SeleccionPoA)
+            {
+                case "1":
+                    Console.WriteLine("Registrando habilidad pasiva. Cual es el nombre?");
+                    SeleccionNombre = Console.ReadLine();
+                    Console.WriteLine("Que nivel necesitas ser para utilizar esta habilidad?");
+                    SeleccionRequiredLvl = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Que clase puede utilizar esta habilidad? [ 1) Warrior  2) Rogue  3) Wizard ]");
+                    SeleccionPlayerClass = (PlayerClass)Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Cuanto de mana cuesta?");
+                    SeleccionManaCost = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Que tipo de habilidad es? [ 1) Daño  2) Curativa ]");
+                    SeleccionDoH = (AbilityTypeDoH)Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Es auto aplicable? (ingrese true o false)");
+                    SeleccionSelfCastable = Convert.ToBoolean(Console.ReadLine());
+                    Console.WriteLine("Cuanto es su potencia?");
+                    SeleccionPotency = Convert.ToInt32(Console.ReadLine());
+                    RegisterActiveAbility(SeleccionNombre, SeleccionRequiredLvl, SeleccionPlayerClass, SeleccionManaCost, SeleccionSelfCastable, SeleccionDoH, SeleccionPotency);
+                    Console.WriteLine("\nRegistro Completo.\n");
+                    Console.WriteLine($"{SeleccionNombre}\nNivel requerido: {SeleccionRequiredLvl}\nTipo: Pasiva\nClase asociada: {SeleccionPlayerClass}\nCosto mana: {SeleccionManaCost}\nAutoaplicable: {SeleccionSelfCastable}\nTipoEfecto: {SeleccionDoH}\nPotencia: {SeleccionPotency}");
+                    break;
+                case "2":
+
+                    break;
+                default:
+                    Console.WriteLine("Seleccion invalida.");
+                    AddAbility();
+                    break;
+            }
+
+        }
+        public ActiveAbility RegisterActiveAbility(string name, int requiredLvl, PlayerClass playerClass, int manaCost, bool selfCastable, AbilityTypeDoH abilityTypeDoH, int potency)
+        {
+            ActiveAbility newActiveAbility = new ActiveAbility(name, requiredLvl, playerClass, manaCost, selfCastable, abilityTypeDoH, potency);
+            _activeAbilityList.Add(newActiveAbility);
+            return newActiveAbility;
         }
     }
     public interface IAbility
@@ -211,13 +252,13 @@ namespace ExamenExtraordinario
     }
     public enum PlayerClass
     {
-        Warrior = 0,
-        Rogue = 1,
-        Wizard = 2
+        Warrior = 1,
+        Rogue = 2,
+        Wizard = 3
     }
     public enum AbilityTypeDoH // Ability type Damage or Heal
     {
-        Damage = 0,
-        Heal = 1
+        Damage = 1,
+        Heal = 2
     }
 }
