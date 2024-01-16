@@ -1,4 +1,7 @@
-﻿namespace ExamenExtraordinario
+﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+
+namespace ExamenExtraordinario
 {
     internal class Program
     {
@@ -9,7 +12,13 @@
     }
     public class ActiveAbility : IAbility, IRangedAbility
     {
-        public int Id { get; set; }
+        private static int lastId = 0;
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            private set { id = value; }
+        }
         public string Name { get; set; }
         public int RequiredLvl { get; set; }
         public AbilityTypePoA AbilityTypePoA { get; set; }
@@ -20,7 +29,9 @@
         public int Potency { get; set; }
         public ActiveAbility()
         {
-
+            AbilityTypePoA = AbilityTypePoA.Active;
+            Id = lastId + 1;
+            lastId++;
         }
         public void Throw()
         {
@@ -29,7 +40,13 @@
     }
     public class PassiveAbility : IAbility, IRangedAbility
     {
-        public int Id { get; set; }
+        private int lastId = 0;
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            private set { id = value; }
+        }
         public string Name { get; set; }
         public int RequiredLvl { get; set; }
         public AbilityTypePoA AbilityTypePoA { get; set; }
@@ -40,7 +57,8 @@
         public int Potency { get; set; }
         public PassiveAbility()
         {
-
+            Id = lastId + 1;
+            lastId++;
         }
         public void Throw()
         {
@@ -56,7 +74,7 @@
     }
     public interface IAbility
     {
-        public int Id { get; set; }
+        private static int lastId = 0;
         public string Name { get; set; }
         public int RequiredLvl { get; set; }
         public AbilityTypePoA AbilityTypePoA { get; set; }
