@@ -104,7 +104,6 @@
             string SeleccionNombre, SeleccionPoA;
             int SeleccionID;
             char SeleccionYN;
-            string pasivabuscada = "a", activabuscada = "a";
 
             Console.WriteLine("Que tipo de abilidad esta buscando? [ 1) Pasiva 2) Activa ]");
             SeleccionPoA = Console.ReadLine();
@@ -113,7 +112,7 @@
                 case "1":
                     Console.WriteLine("Ingrese el ID de su habilidad pasiva.");
                     SeleccionID = Convert.ToInt32(Console.ReadLine());
-                    var pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
+                    var pasivabuscada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
                     if (pasivabuscada != null)
                     {
                         Console.WriteLine(pasivabuscada);
@@ -128,7 +127,7 @@
                             case 'y':
                                 Console.WriteLine("Ingrese el nombre de su habilidad pasiva.");
                                 SeleccionNombre = Console.ReadLine();
-                                pasivabucada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
+                                pasivabuscada = Program.AbilityRepository._passiveAbilityList.Find(x => x.Id == SeleccionID);
                                 if (pasivabuscada != null)
                                 {
                                     Console.WriteLine(pasivabuscada);
@@ -166,7 +165,7 @@
                             case 'y':
                                 Console.WriteLine("Ingrese el nombre de su habilidad activa.");
                                 SeleccionNombre = Console.ReadLine();
-                                activabuscada = Program.registro._activeAbilityList.Find(x => x.Nombre == SeleccionNombre);
+                                activabuscada = Program.AbilityRepository._activeAbilityList.Find(x => x.Name == SeleccionNombre);
                                 if (activabuscada != null)
                                 {
                                     Console.WriteLine(activabuscada);
