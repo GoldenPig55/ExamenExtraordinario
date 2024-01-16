@@ -12,8 +12,16 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public int RequiredLvl { get; set; }
-        public AbilityType AbilityType { get; set; }
+        public AbilityTypePoA AbilityTypePoA { get; set; }
         public PlayerClass PlayerClass {  get; set; }
+    }
+    public interface IRangedAbility
+    {
+        public int ManaCost { get; set; }
+        public bool SelfCast { get; set; }
+        public AbilityTypeDoH AbilityTypeDoH { get; set; }
+        public int Potency { get; set; }
+        public void Throw();
     }
     public enum AbilityTypePoA // Ability Type Passive or Active
     {
