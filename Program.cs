@@ -7,18 +7,65 @@
 
         }
     }
+    public class ActiveAbility : IAbility, IRangedAbility
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int RequiredLvl { get; set; }
+        public AbilityTypePoA AbilityTypePoA { get; set; }
+        public PlayerClass PlayerClass { get; set; }
+        public int ManaCost { get; set; }
+        public bool SelfCastable { get; set; }
+        public AbilityTypeDoH AbilityTypeDoH { get; set; }
+        public int Potency { get; set; }
+        public ActiveAbility()
+        {
+
+        }
+        public void Throw()
+        {
+
+        }
+    }
+    public class PassiveAbility : IAbility, IRangedAbility
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int RequiredLvl { get; set; }
+        public AbilityTypePoA AbilityTypePoA { get; set; }
+        public PlayerClass PlayerClass { get; set; }
+        public int ManaCost { get; set; }
+        public bool SelfCastable { get; set; }
+        public AbilityTypeDoH AbilityTypeDoH { get; set; }
+        public int Potency { get; set; }
+        public PassiveAbility()
+        {
+
+        }
+        public void Throw()
+        {
+
+        }
+    }
+    public class AbilityRepository
+    {
+        public void FindAbility()
+        {
+
+        }
+    }
     public interface IAbility
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int RequiredLvl { get; set; }
         public AbilityTypePoA AbilityTypePoA { get; set; }
-        public PlayerClass PlayerClass {  get; set; }
+        public PlayerClass PlayerClass { get; set; }
     }
     public interface IRangedAbility
     {
         public int ManaCost { get; set; }
-        public bool SelfCast { get; set; }
+        public bool SelfCastable { get; set; }
         public AbilityTypeDoH AbilityTypeDoH { get; set; }
         public int Potency { get; set; }
         public void Throw();
